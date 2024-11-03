@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Orders {
+  id                 Int       @id @default(autoincrement()) @db.SmallInt
+  created_at         DateTime  @default(now()) @db.Timestamptz(6)
+  user_id            Int?      @db.SmallInt
+  product_id         Int?      @db.SmallInt
+  status             status?
+  purchased_quantity Int?      @db.SmallInt
+  Products           Products? @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Users              Users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Products {
+  id                 Int      @id @default(autoincrement()) @db.SmallInt
+  created_at         DateTime @default(now()) @db.Timestamptz(6)
+  name               String?
+  price              Decimal? @db.Decimal
+  description        String?
+  stock_availability Int?     @db.SmallInt
+  created_admin      Int?     @db.SmallInt
+  visibility         type?
+  Orders             Orders[]
+  Users              Users?   @relation(fields: [created_admin], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Users {
+  id         Int        @id @default(autoincrement()) @db.SmallInt
+  created_at DateTime   @default(now()) @db.Timestamptz(6)
+  username   String     @unique
+  password   String?
+  role       role
+  type       type
+  Orders     Orders[]
+  Products   Products[]
+}
+
+enum role {
+  ADMIN
+  CUSTOMER
+}
+
+/// This enum is commented in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+enum status {
+  PENDING
+  SHIPPED
+  DELIVERED
+}
+
+enum type {
+  FREE
+  PAID
+}
