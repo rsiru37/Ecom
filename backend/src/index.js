@@ -117,7 +117,7 @@ app.get("/checkout", auth, async(req,res) => {
         <h1>Success!</h1>
         <p>Your transaction was successful.</p>
         <p>Thank you for your purchase!</p>
-        <a href="http://localhost:5173/dashboard"/>Go back to Homepage</a>
+        <a href="https://ecom-tawny-three.vercel.app/dashboard"/>Go back to Homepage</a>
     </div>
 </body>
 </html>`
@@ -171,7 +171,7 @@ app.get("/checkout", auth, async(req,res) => {
     <h1>Payment Failed</h1>
     <p>We're sorry, but your payment could not be processed.</p>
     <p>Please check your payment details or try again later.</p>
-    <a href="/checkout">Return to Checkout</a>
+    <a href="https://ecom-tawny-three.vercel.app/dashboard">Return to Checkout</a>
 </div>
 
 </body>

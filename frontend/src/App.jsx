@@ -16,9 +16,10 @@ function App() {
         <Route path={"/dashboard"} element={<Dashboard />} />
         <Route path={"/admin-board"} element={<ADashboard />} />
         <Route path={"/pay"} element={<Payments/>}/>
+        <Route path={"/"} element={<h1>Welcome to Shopee App</h1>}/>
       </Routes>
     </BrowserRouter>
-    <h1>Welcome to Shopee App</h1>
+    
     </>
   )
 }
