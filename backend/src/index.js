@@ -213,7 +213,7 @@ app.post("/signin", async(req,res) => {
         const passwordValidation = await bcrypt.compare(password, existing_user.password);
         if(passwordValidation){
             const token = jwt.sign({id:Number(existing_user.id)}, process.env.JWT_SECRET);
-            res.cookie("token",token);
+            res.cookie("token",token,{httpOnly: true,secure: true,sameSite: 'None'});
             if(existing_user.role == "CUSTOMER"){
                 res.status(200).json({message:"Logged in as customer", token:token});
             }
