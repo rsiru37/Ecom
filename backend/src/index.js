@@ -231,6 +231,8 @@ app.post("/signin", async(req,res) => {
 })
 
 async function auth(req,res,next) {
+    console.log("REQ", req);
+    console.log("-----REQ.COokies", req.cookies);
     const token = req.cookies.token;
     if (token) {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
