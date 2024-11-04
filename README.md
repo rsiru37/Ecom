@@ -11,4 +11,4 @@
 
 ## Local Setup for Frontend
 1.Navigate to the Frontend Folder and run `npm install`
-2.run `npm run dev` to start it locally
+2. Run `npm run dev` to start it locally
