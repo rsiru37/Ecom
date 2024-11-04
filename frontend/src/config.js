@@ -1,0 +1,1 @@
+export const BACKEND_URL="https://ecom-backend-02va.onrender.com";

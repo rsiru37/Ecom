@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import axios from "axios"
+import { BACKEND_URL } from '../config';
 
 export const CreateProd = ({isOpen, onClose}) => {
     const [users, setusers] = useState([]);
     const visibilityOptions=["FREE", "PAID"];
     useEffect(() => {
         async function fetchusers(){
-            const users = await axios.get("http://localhost:3000/user", {withCredentials:true});
+            const users = await axios.get(`${BACKEND_URL}/user`, {withCredentials:true});
             if(users.status == 200){
                 setusers(users.data.users);
             }
@@ -28,7 +29,7 @@ export const CreateProd = ({isOpen, onClose}) => {
       }
       else{
         try {
-            const res = await axios.post("http://localhost:3000/createprod",{formData}, {withCredentials:true});
+            const res = await axios.post(`${BACKEND_URL}/createprod`,{formData}, {withCredentials:true});
             if(res.status == 200){
                 onClose();
                 window.location.reload();

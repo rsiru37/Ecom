@@ -4,6 +4,7 @@ import { CreateProd } from "./CreateProd";
 import { Modal, Button, Form, Table} from 'react-bootstrap';
 import ACard from "./ACard";
 import { useNavigate } from 'react-router-dom'
+import { BACKEND_URL } from "../config";
 
 export const ADashboard = () => {
     const [user, setuser] = useState();
@@ -16,12 +17,12 @@ export const ADashboard = () => {
 
     useEffect(() => {
         async function mounting() {
-            const user = await axios.get("http://localhost:3000/user", { withCredentials:true });
+            const user = await axios.get(`${BACKEND_URL}/user`, { withCredentials:true });
             setuser(user.data.user);
             setusername(user.data.user.username);
-            const products = await axios.get("http://localhost:3000/products", { withCredentials:true });
+            const products = await axios.get(`${BACKEND_URL}/products`, { withCredentials:true });
             setproducts(products.data.products);
-            const orders = await axios.get("http://localhost:3000/orders",{ withCredentials:true });
+            const orders = await axios.get(`${BACKEND_URL}/orders`,{ withCredentials:true });
             setorders(orders.data.orders);
         }
     mounting();
@@ -29,7 +30,7 @@ export const ADashboard = () => {
 },[]);
     const handleStatusChange = async(order_id,status) => {
         try {
-          await axios.put(`http://localhost:3000/updateorder?order_id=${order_id}&status=${status}`,{},{withCredentials:true});
+          await axios.put(`${BACKEND_URL}/updateorder?order_id=${order_id}&status=${status}`,{},{withCredentials:true});
           window.location.reload();
         } catch (error) {
           alert(error);
@@ -47,7 +48,7 @@ export const ADashboard = () => {
                 right: '20px',
                 padding: '10px 20px',
                 fontSize: '16px',
-                cursor: 'pointer',}} onClick={async()  => {await axios.post("http://localhost:3000/logout", {}, {withCredentials:true}); navigate("/signin")}}>Logout
+                cursor: 'pointer',}} onClick={async()  => {await axios.post(`${BACKEND_URL}/logout`, {}, {withCredentials:true}); navigate("/signin")}}>Logout
             </button>
             <h1>Welcome {username}</h1>
             <br></br>

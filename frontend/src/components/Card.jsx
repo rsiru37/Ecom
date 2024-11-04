@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import { BACKEND_URL } from '../config';
 
 export const Card = ({product, user}) => {
   const [range,setrange] = useState([]);
@@ -13,7 +14,7 @@ export const Card = ({product, user}) => {
     mounting();
   },[]);
     const handlePay = async() => {
-        const res = await axios.post("http://localhost:3000/create-checkout-session",{
+        const res = await axios.post(`${BACKEND_URL}/create-checkout-session`,{
           prod_id:product.id,
           prod_name:product.name,
           qty:selectedqty,

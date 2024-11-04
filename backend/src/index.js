@@ -15,10 +15,7 @@ const prisma = new PrismaClient();
 const stripe = new Stripe(process.env.STRIPE_KEY);
 
 app.use(cookieParser());
-app.use(cors({
-    origin: "http://localhost:5173",
-    credentials:true
-}));
+app.use(cors({credentials:true}));
 
 app.use(express.json());
 
@@ -42,8 +39,8 @@ app.post('/create-checkout-session', auth, async (req, res) => {
         product_id:prod_id
     },
     mode: 'payment',
-    success_url: `http://localhost:3000/checkout?success=true&sid={CHECKOUT_SESSION_ID}`,
-    cancel_url: `http://localhost:3000/checkout?canceled=true/`,
+    success_url: `${process.env.BACKEND_URL}/checkout?success=true&sid={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${process.env.BACKEND_URL}/checkout?canceled=true/`,
 });
     res.status(200).json({ url: session.url });
   //res.redirect(303, session.url);

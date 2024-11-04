@@ -1,12 +1,14 @@
 import { useState } from "react"
 import axios from "axios"
-// require('dotenv').config();
+import { useNavigate } from 'react-router-dom'
+import { BACKEND_URL } from "../config"
+
 export const Signup = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [role, setRole] = useState('ADMIN');
     const [error, setError] = useState(null);
-
+    const navigate = useNavigate();
     const handleChange = (event) => {
         const value = event.target.value;
         setRole(value);
@@ -30,7 +32,7 @@ export const Signup = () => {
 
         <button onClick={async () => {
             try {
-                const res = await axios.post(`http://localhost:3000/signup`, {
+                const res = await axios.post(`${BACKEND_URL}/signup`, {
                     username,
                     password,
                     role

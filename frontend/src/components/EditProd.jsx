@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
 import { Modal, Button, Form } from 'react-bootstrap';
-
+import { BACKEND_URL
+  
+ } from '../config';
 export const EditProd = ({isOpen, onClose,product}) => {
     // const [startDate,setStartDate]=useState(new Date(2024,10,5));
     const [submitbutton,setsubmitbutton] = useState(false);
@@ -49,7 +51,7 @@ export const EditProd = ({isOpen, onClose,product}) => {
       }
       else{
       try {
-        const res = await axios.put(`http://localhost:3000/updateprod/?prod_id=${product.id}`,{formData}, {withCredentials:true});
+        const res = await axios.put(`${BACKEND_URL}/updateprod/?prod_id=${product.id}`,{formData}, {withCredentials:true});
         if(res.status == 200){
             onClose();
             window.location.reload();

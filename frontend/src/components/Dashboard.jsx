@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom'
 import Card from "./Card"
 import { Modal, Button, Form, Table } from 'react-bootstrap';
+import { BACKEND_URL } from "../config";
 
 export const Dashboard = () => {
     const [user, setuser] = useState();
@@ -13,12 +14,12 @@ export const Dashboard = () => {
     const navigate = useNavigate();
     useEffect(() => {
         async function mounting() {
-            const user = await axios.get("http://localhost:3000/user", { withCredentials:true });
+            const user = await axios.get(`${BACKEND_URL}/user`, { withCredentials:true });
             setuser(user.data.user);
             setusername(user.data.user.username);
-            const res = await axios.get("http://localhost:3000/products",{ withCredentials:true });
+            const res = await axios.get(`${BACKEND_URL}/products`,{ withCredentials:true });
             setproducts(res.data.products);
-            const orders = await axios.get("http://localhost:3000/orders",{ withCredentials:true });
+            const orders = await axios.get(`${BACKEND_URL}/orders`,{ withCredentials:true });
             setorders(orders.data.orders);
         }   
         mounting();
@@ -34,7 +35,7 @@ export const Dashboard = () => {
                 right: '20px',
                 padding: '10px 20px',
                 fontSize: '16px',
-                cursor: 'pointer',}} onClick={async()  => {await axios.post("http://localhost:3000/logout", {}, {withCredentials:true}); navigate("/signin")}}>Logout</button>
+                cursor: 'pointer',}} onClick={async()  => {await axios.post(`${BACKEND_URL}/logout`, {}, {withCredentials:true}); navigate("/signin")}}>Logout</button>
             <h1>Welcome {username}</h1>
                 <br></br>
                 <h2> Products : </h2>
