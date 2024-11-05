@@ -41,6 +41,8 @@ export const Signin = () => {
         <p className="text-sm text-muted-foreground">
            <a href="/signup" className="underline">Goto Sign Up</a>
          </p>
+         <br></br>
+         <p style={{color:"blue"}}>Since the Backend is deployed on the Cloud, You might have to wait for around 60 seconds for the Backend Server to Start</p>
         <div className="text-bottom" style={{
         position: 'absolute',
         bottom: '220px', // Distance from the bottom

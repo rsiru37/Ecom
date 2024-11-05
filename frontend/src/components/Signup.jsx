@@ -50,6 +50,7 @@ export const Signup = () => {
         }}>Submit</button>
         <p className="text-sm text-muted-foreground">
            Already have an account? <a href="/signin" className="underline">Sign In</a>
-         </p>
+         </p><br></br>
+         <p style={{color:"blue"}}>Since the Backend is deployed on the Cloud, You might have to wait for around 60 seconds for the Backend Server to Start</p>
     </div>
 }
