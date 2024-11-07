@@ -15,7 +15,7 @@ const prisma = new PrismaClient();
 const stripe = new Stripe(process.env.STRIPE_KEY);
 
 app.use(cookieParser());
-app.use(cors({origin:"https://ecom-tawny-three.vercel.app", credentials:true}));
+app.use(cors({origin:["https://ecom-tawny-three.vercel.app","http://localhost:5173"], credentials:true}));
 
 app.use(express.json());
 
