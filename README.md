@@ -11,5 +11,6 @@
 8. NOTE : You must populate the environment variables for smooth running of the project locally, I have used PostgreDB and you can fetch yours from supabase
 
 ## Local Setup for Frontend
-1.Navigate to the Frontend Folder and run `npm install`
-2. Run `npm run dev` to start it locally
+1. Navigate to the Frontend Folder and run `npm install`
+2. Navigate to the config file and update the BACKEND_URL with your BACKEND_URL for it to work smoothly
+3. Run `npm run dev` to start it locally
